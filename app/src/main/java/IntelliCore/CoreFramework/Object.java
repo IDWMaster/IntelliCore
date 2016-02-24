@@ -1,6 +1,7 @@
 package IntelliCore.CoreFramework;
 
 import IntelliCore.Action;
+import IntelliCore.IntelliContext;
 import IntelliCore.IntelliObject;
 import IntelliCore.IntelliType;
 
@@ -26,7 +27,7 @@ public class Object extends IntelliType {
 
             }
             @Override
-            public IntelliObject Perform() {
+            public IntelliObject Perform(IntelliContext context) {
                 return Create();
             }
         });

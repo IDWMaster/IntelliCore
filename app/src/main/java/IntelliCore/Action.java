@@ -8,7 +8,7 @@ public abstract class Action {
 
     }
     public abstract void Init();
-    public abstract IntelliObject Perform();
+    public abstract IntelliObject Perform(IntelliContext context);
     IntelliType type;
     public void RegisterAlias(String alias) {
         type.actionAliases.add(new ActionAlias(alias,this));

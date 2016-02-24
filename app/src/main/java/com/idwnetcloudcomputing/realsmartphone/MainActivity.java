@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView text = (TextView)findViewById(R.id.text);
         final Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
 
-        SpeechRecognizer recognizer = SpeechRecognizer.createSpeechRecognizer(this);
+        final SpeechRecognizer recognizer = SpeechRecognizer.createSpeechRecognizer(this);
         recognizer.setRecognitionListener(new RecognitionListener() {
             @Override
             public void onReadyForSpeech(Bundle params) {
@@ -92,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
                     tts.speak(e.getMessage(),TextToSpeech.QUEUE_FLUSH,null);
                 }
 
+
+                recognizer.startListening(intent);
 
             }
 

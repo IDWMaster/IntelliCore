@@ -22,15 +22,19 @@ public class AIParser {
             if(text.startsWith(type.actionAliases.get(i).alias)) {
                 //Invoke action
                 Action action = type.actionAliases.get(i).action;
-                return action.Perform();
+                IntelliContext context = new IntelliContext();
+                context.text = text.replace(type.actionAliases.get(i).alias,"");
+                return action.Perform(context);
             }
         }
-        throw new Exception("Sorry. I understood the part about the "+type.toString()+", but I didn't understand the part about "+text+".");
+        throw new Exception("Sorry. I don't know how to do that to a "+type+".");
     }
 
     static AIInit init = new AIInit();
 
-   public static void Run(String _txt) throws Exception {
+    static IntelliContext context = new IntelliContext();
+
+   public static IntelliObject Run(String _txt) throws Exception {
 
         ArrayList<String> words = new ArrayList();
         String[] _words = _txt.split(" ");
@@ -47,7 +51,7 @@ public class AIParser {
                 //Found subject matter. Invoke action on subject.
                 words.remove(i);
                 IntelliObject result = InvokeAction(type,null,words);
-                return;
+                return result;
             }
         }
 
